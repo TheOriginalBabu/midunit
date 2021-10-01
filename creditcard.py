@@ -11,13 +11,18 @@ import random
 
 move = 0
 score = 0
+ccinfo = 0
+playcount = 0
+gamecontinue = 0
 CONST_ACCEPT = [1,2,3]
 
 print("Welcome to Rock Paper Scissors!")
 
 while(True):
+    gamecontinue = False
     while(move not in CONST_ACCEPT):
         print("Select your move (1 - Rock, 2 - Paper, 3 - Scissors)")
+        print()
         move = int(msvcrt.getch())
         if move not in CONST_ACCEPT:
             print("Invalid input.")
@@ -43,32 +48,44 @@ while(True):
         score = score + 1
         print("You won!")
         print("Your new score is",score)
+        
+    playcount = playcount + 1
+    print()
 
+    if playcount == 1:
+        while (int(ccinfo) - 1000000000000000) < 0:
+            print("Please enter valid credit card info to continue")
+            ccinfo = input()
+            if int(ccinfo) - 1000000000000000 < 0 or int(ccinfo) - 10000000000000000 > 0:
+                print(int(ccinfo) - 1000000000000000)
+                print("invalid cc number")
 
+    print()
+    print("Cost to continue play: $",playcount - 0.01)
+    print("Would you like to continue play? Y/N")
+
+    while(gamecontinue not in [b"n",b"y"]):
+        gamecontinue = msvcrt.getch()
+        if gamecontinue == b"n":
+            exit()
+
+    print()
+
+    
 
 
 #file = open("ccinfo.txt", mode = "r+")
 
-#dafile = file.read()
-#dafile = string(dafile)
+#infofile = file.read()
+#infofile = string(dafile)
 
-# if bool(dafile) == True:
-#     print("lol")
-#     #SavedCCInfo = file.readlines(1)
+# if bool(infofile) == True:
+#     SavedCCInfo = file.readlines(1)
 # else:
-#     print("ohno")
-# input(dafile)
+#     print("enterccinfo")
+#     input(infofile)
 
 # if bool(savedCCInfo) == True:
 #     print("Saved Credit Card information detected")
 #     print("Your saved credit card info is:",savedCCInfo)
 #     input()
-
-# elif bool(savedCCInfo) == False:
-#     while (int(ccInfo) - 1000000000000000) < 0:
-#         print("Please enter credit card info")
-#         ccInfo = input()
-#         if (int(ccInfo) - 1000000000000000) > 0:
-#             file.write(str(ccInfo))
-#         elif (int(ccInfo) - 1000000000000000) < 0:
-#             print("invalid cc number")
