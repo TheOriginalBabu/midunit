@@ -1,17 +1,21 @@
 # author: Izaan Syed
-# date: 9/29/2021 - 10/1/2021
-# description: basic rock paper scissors game
+# date: 9/29/2021 - 10/15/2021
+# description: basic rock paper scissors game, expanded to meet midunit 2 criteria
 # filename: midunit_izaan.py
 
 # notes: - filename subsection of header is redundant and dumb
 #        - date subsection of header is also unnecessary, should be replaced with just date created
 #        - script requires Microsoft Windows to run due to dependence on msvcrt.
 
+# changelog:
+#        - 
+
 # - Libary import 
 import msvcrt
 import random
 
 score = 0
+move = False
 ccinfo = False
 playcount = False
 gamecontinue = False
@@ -19,8 +23,15 @@ CONST_ACCEPT = [1,2,3]
 
 # Variables not included and defined later: "aimove", "move"
 
+# - Functions definition
+
+
+
 # -
 
+print(dir())
+print((globals))
+print(locals())
 print("Welcome to Rock Paper Scissors!")    # Welcomes user
 
 while(True):                                # Main game loop

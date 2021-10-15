@@ -1,33 +1,58 @@
 # author: Izaan Syed
 # date: 9/29/2021 - 10/1/2021
-# description: basic rock paper scissors game
+# description: basic rock paper scissors game, updated to reach midunit 2 criteria
 # filename: midunit_izaan.py
 
-# notes: - filename subsection of header is redundant and dumb
-#        - date subsection of header is also unnecessary, should be replaced with just date created
-#        - script requires Microsoft Windows to run due to dependence on msvcrt.
+# /- notes: -\
+# - filename and date subsection of header is redundant and dumb
+# - script requires Microsoft Windows to run due to dependence on msvcrt library
 
-# - Libary import 
+# /- changelog: =\
+# - added constant variable checker (function)
+# - added automated decoder of MSVCRT input (function)
+# - fixed bug that would cause program to crash when entering non-integer move selection
+
+# /- Libary import -\ 
 import msvcrt
 import random
 
+# /- Functions definition -\
+
+def check_CONST_ACCEPT(parameter): # Somewhat useless, runs at end of program to check if constant variables have been altered
+    if parameter != True:
+        global static1
+        static1 = CONST_ACCEPT
+    else:
+        if CONST_ACCEPT != static1:
+            print("Constant Variable Error! Expected", static1, ", received", CONST_ACCEPT)
+            exit()
+
+def instantinput():                # Decodes raw MSVCRT input into easy to read
+    poll = bytes.decode(msvcrt.getch())
+    return poll
+
+# /- Variables definition -\
+
 score = 0
+move = False
+aimove = False
 ccinfo = False
 playcount = False
 gamecontinue = False
-CONST_ACCEPT = [1,2,3]
 
-# Variables not included and defined later: "aimove", "move"
+CONST_ACCEPT = ["1","2","3"]
+check_CONST_ACCEPT(False)
 
 # -
 
 print("Welcome to Rock Paper Scissors!")    # Welcomes user
 
-while(True):                                # Main game loop
+while(gamecontinue != "n"):            # Main game loop
+    gamecontinue = False                  # If "yes" selected, restart loop and reset continue variable
     while(move not in CONST_ACCEPT):        # Error trapping loop
         print("Select your move (1 - Rock, 2 - Paper, 3 - Scissors)")
         print()
-        move = int(msvcrt.getch())  # Gets input for move selection from user, number based selection. Converts string to integer.
+        move = instantinput()  # Gets input for move selection from user, number based selection. Converts string to integer.
         if move not in CONST_ACCEPT:
             print("Invalid input.")
             print()
@@ -59,7 +84,7 @@ while(True):                                # Main game loop
     print()  
     playcount = playcount + 1 # Increases play count by 1 after game
 
-    if playcount == 1:  # Prompts credit card input to continue (gag based on microtransactions in modern gaming)
+    if playcount == 1:                              # Prompts credit card input to continue (gag based on microtransactions in modern gaming)
         while (int(ccinfo) - 1000000000000000) < 0: # Checks digit count in credit card number provided, error trapped loop
             print("Please enter valid credit card info to continue")
             ccinfo = input()
@@ -70,12 +95,13 @@ while(True):                                # Main game loop
     print("Cost to continue play: $",playcount - 0.01) # Prompts to continue game. Note that only pseudo-billing is implemented.
     print("Would you like to continue play? Y/N")
 
-    while(gamecontinue not in [b"n",b"y"]): # Error trapped loop to get Yes/No input to continue game
-        gamecontinue = msvcrt.getch()
-        if gamecontinue == b"n":            # If "no" selected, exit program.
-            exit()
-    gamecontinue = False                    # If "yes" selected, restart loop and reset continue variable
+    while(gamecontinue not in ["n","y"]): # Error trapped loop to get Yes/No input to continue game
+        gamecontinue = instantinput()
     print()
+    check_CONST_ACCEPT(True)
+
+print("Thank you for playing")
+exit()
 
     
 
