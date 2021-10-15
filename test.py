@@ -1,4 +1,11 @@
-import msvcrt
+ccinfo = "4444222233336666"
+#print(ccinfo[0:4],end="\r")
 
-test1 = bytes.decode(msvcrt.getch())
-print(test1)
+
+
+
+# input("hahayeet")
+# import sys 
+# sys.stdout.write("\033[F") #back to previous line 
+# sys.stdout.write("\033[K") #clear line 
+# print("SUCCESS!") 
